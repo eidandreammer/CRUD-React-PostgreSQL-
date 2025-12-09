@@ -42,20 +42,24 @@ function Registro() {
       // se inicia el manejo de errores del lado del servidor en caso de que haya
       //algun error de parte de este
       const res = await fetch("http://localhost:3000/api/register", {
-        //Aqui
+        //Aqui se define el metodo, el headers se encarga de decirle a la
+        //aplicacion que esta en json
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data), //Convierte los datos que vienen del body
+        //a json y a string
       });
 
       alert("Usuario registrado con exito");
-      const result = await res.json();
+      const result = await res.json(); // todo lo anterior guardado en la
+      //variable res se convierte en json luego de que lleguen
       console.log("Respuesta del servidor" + result);
     } catch (error) {
       alert("Error al enviar los datos");
       console.error("Error al enviar los datos" + error);
+      // manejo de errores en caso de que no se logren enviar los datos
     }
   }
   return (
@@ -68,7 +72,9 @@ function Registro() {
             name="text"
             className="input"
             placeholder="Name"
-            onChange={(e) => inpUser(e)}
+            onChange={(e) => inpUser(e)} // Se declara el input y se llama la
+            //funcion correspondiente para que se almacene en su variable
+            //se repite con los 3 inputs
           />
           <input
             type="password"
