@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Registro.css";
-import { Alert } from "antd";
+import Login from "../Login/Login";
 
 function Registro() {
   //Aqui es donde se va a almacenar cada dato del formulario
@@ -50,42 +50,53 @@ function Registro() {
     }
   }
 
+  const [view, setView] = useState(true);
+
   return (
-    <div className="card">
-      <h1>Register form</h1>
-      <div className="form">
-        <form>
-          <input
-            type="text"
-            name="text"
-            className="input"
-            placeholder="User"
-            onChange={(e) => inpUser(e)}
-          />
-          <input
-            type="password"
-            name="password"
-            className="input"
-            placeholder="Password"
-            onChange={(e) => inpPassword(e)}
-          />
+    <div>
+      {view && (
+        <div className="card">
+          <h1>Register form</h1>
+          <div className="form">
+            <form>
+              <input
+                type="text"
+                name="text"
+                className="input"
+                placeholder="User"
+                onChange={(e) => inpUser(e)}
+              />
+              <input
+                type="password"
+                name="password"
+                className="input"
+                placeholder="Password"
+                onChange={(e) => inpPassword(e)}
+              />
 
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className="input"
-            placeholder="Email address"
-            onChange={(e) => inpEmail(e)}
-          />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                className="input"
+                placeholder="Email address"
+                onChange={(e) => inpEmail(e)}
+              />
 
-          <div className="buttons">
-            <button type="button" onClick={register}>
-              Register
-            </button>
+              <div className="buttons">
+                <button type="button" onClick={() => setView(!view)}>
+                  Login
+                </button>
+                <button type="button" onClick={register}>
+                  Register
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        </div>
+      )}
+
+      {!view && <Login />}
     </div>
   );
 }
