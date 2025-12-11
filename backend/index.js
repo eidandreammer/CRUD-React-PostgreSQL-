@@ -55,7 +55,7 @@ app.post("/api/login", async (req, res) => {
       [users, password]
     );
 
-    if (login.rows.length > 0) {
+    if (login.rows.length >= 0) {
       return res.status(201).json({
         success: true,
         data: login.rows[0],

@@ -50,32 +50,6 @@ function Registro() {
     }
   }
 
-  async function login() {
-    if ((!users && !email) || !password) {
-      return alert("Campos incompletos");
-    }
-
-    const data = { users, password, email };
-
-    try {
-      const res = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-      if (result.success && res.ok) {
-        alert("Inicio de seccion exitoso");
-      } else {
-        alert(result.message);
-      }
-    } catch (error) {
-      console.log("Error al iniciar seccion", error);
-      alert("Error al inicciar seccion");
-    }
-  }
-
   return (
     <div className="card">
       <h1>User's form</h1>
@@ -85,7 +59,7 @@ function Registro() {
             type="text"
             name="text"
             className="input"
-            placeholder="Name"
+            placeholder="User"
             onChange={(e) => inpUser(e)}
           />
           <input
@@ -104,16 +78,8 @@ function Registro() {
             placeholder="Email address"
             onChange={(e) => inpEmail(e)}
           />
-          <div className="fgtpsw">
-            <p>
-              <a href="###">Forgot your password?</a>
-            </p>
-          </div>
 
           <div className="buttons">
-            <button type="button" onClick={login}>
-              Login
-            </button>
             <button type="button" onClick={register}>
               Register
             </button>
