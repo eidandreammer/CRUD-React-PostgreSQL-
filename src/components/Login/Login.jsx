@@ -32,11 +32,10 @@ function Login() {
       });
 
       const result = await res.json();
-      if (result.success) {
-        alert("Seccion iniciada");
-      } else {
-        alert(result.message);
+      if (!result.success) {
+        return alert(result.message);
       }
+      alert("Seccion iniciada");
     } catch (error) {
       console.log("Error al iniciar seccion", error);
       alert("Error al inicciar seccion");
@@ -51,7 +50,7 @@ function Login() {
       {view && (
         <div className="container">
           <img className="logo" src="/img/OrbiNombre.png" />
-          <h1>Login form</h1>
+          <h1>Login</h1>
           <div className="form">
             <form>
               <input

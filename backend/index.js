@@ -69,21 +69,31 @@ app.post("/api/login", async (req, res) => {
   const { users, password, email } = req.body;
 
   try {
+    const evaluate = await pool.query("SELECT * FROM users WHERE name = $1", [
+      users,
+    ]);
+
+    if (evaluate.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Usuario no encontrado backend",
+      });
+    }
     const login = await pool.query(
       "SELECT * FROM users WHERE name = $1 AND password = $2",
       [users, password]
     );
 
-    if (login.rows.length >= 1) {
+    if (login.rows.length === 0) {
       return res.status(201).json({
-        success: true,
-        data: login.rows[0],
+        success: false,
+        message: "Contrasena incorrecta",
       });
     }
 
     res.status(404).json({
-      success: false,
-      message: "Usuario no encontrado",
+      success: true,
+      data: login.rows[0],
     });
   } catch (error) {
     res.status(500).json({

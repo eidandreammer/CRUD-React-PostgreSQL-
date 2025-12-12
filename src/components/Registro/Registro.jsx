@@ -61,7 +61,7 @@ function Registro() {
       {view && (
         <div className="container">
           <img className="logo" src="/img/OrbiNombre.png" />
-          <h1>Register form</h1>
+          <h1>Register</h1>
           <div className="form">
             <form>
               <input
