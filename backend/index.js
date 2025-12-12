@@ -28,8 +28,27 @@ app.post("/api/register", async (req, res) => {
   const { users, password, email } = req.body;
 
   try {
+    const evaluate1 = await pool.query("SELECT * FROM users WHERE name = $1", [
+      users,
+    ]);
+
+    const evaluate2 = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (evaluate1.rows.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Usuario existente",
+      });
+    } else if (evaluate2.rows.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Correo asociado a usuario existente",
+      });
+    }
     const newUser = await pool.query(
-      "INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO users (name, password, email) VALUES ($1, $2, $3)",
       [users, password, email]
     );
 

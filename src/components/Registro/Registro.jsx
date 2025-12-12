@@ -41,9 +41,13 @@ function Registro() {
         body: JSON.stringify(data),
       });
 
-      alert("Usuario registrado con exito");
       const result = await res.json();
-      console.log("Respuesta del servidor" + result);
+
+      if (!result.success) {
+        return alert(result.message);
+      }
+
+      alert("Usuario registrado con exito");
     } catch (error) {
       alert("Error al enviar los datos");
       console.error("Error al enviar los datos" + error);
