@@ -32,8 +32,8 @@ function Login() {
       });
 
       const result = await res.json();
-      if (result.success && res.ok) {
-        alert("Inicio de seccion exitoso");
+      if (result.success) {
+        alert("Seccion iniciada");
       } else {
         alert(result.message);
       }

@@ -51,11 +51,11 @@ app.post("/api/login", async (req, res) => {
 
   try {
     const login = await pool.query(
-      "SELECT FROM users WHERE name = $1 AND password = $2",
+      "SELECT * FROM users WHERE name = $1 AND password = $2",
       [users, password]
     );
 
-    if (login.rows.length >= 0) {
+    if (login.rows.length >= 1) {
       return res.status(201).json({
         success: true,
         data: login.rows[0],
