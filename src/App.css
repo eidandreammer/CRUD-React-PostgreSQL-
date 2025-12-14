@@ -39,7 +39,7 @@
   border: 2px solid transparent;
   max-width: 300px;
   width: 80vw;
-  height: 6.5vh;
+  height: 7vh;
   padding-left: 0.8em;
   outline: none;
   overflow: hidden;
@@ -86,8 +86,13 @@ form {
   display: flex;
   flex-flow: column;
   justify-content: center;
+  gap: 1vh;
 }
 
+h1{
+  margin: 15px;
+  color: #0d2a58;
+}
 .register {
   display: flex;
   justify-content: center;
